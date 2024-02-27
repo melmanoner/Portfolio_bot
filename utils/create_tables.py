@@ -1,13 +1,26 @@
 from bot import db
 from asyncpg.exceptions import DuplicateTableError
 
+async def create_table_users():
+    sql = 'CREATE TABLE users(id serial PRIMARY KEY, tg_id bigint, username text, name text, registration_date text, role text)'
+    try:
+        await db.pool.execute(sql)
+    except:
+        print('Ошибка создания таблицы users')
+
 async def create_table_albums():
     sql = 'CREATE TABLE albums(id serial PRIMARY KEY, name text)'
-    await db.pool.execute(sql)
+    try:
+        await db.pool.execute(sql)
+    except:
+        print('Ошибка создания таблицы albums')
 
 async def create_table_photoportfolio():
-    sql = 'CREATE TABLE photoportfolio(id serial PRIMARY KEY,album text, photo text, date text)'
-    await db.pool.execute(sql)
+    sql = 'CREATE TABLE photoportfolio(id serial PRIMARY KEY,album integer, photo text, date text)'
+    try:
+        await db.pool.execute(sql)
+    except:
+        print('Ошибка создания таблицы photoportfolio')
 
 
 async def run():
