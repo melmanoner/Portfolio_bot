@@ -7,6 +7,6 @@ from utils.db import Database
 
 bot = Bot(token=TOKEN)
 storage = MemoryStorage()
-dp = Dispatcher(bot, storage)
+dp = Dispatcher(bot, storage=storage)
 loop = asyncio.get_event_loop()
 db = Database(loop)
